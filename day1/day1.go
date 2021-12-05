@@ -2,19 +2,28 @@ package main
 
 import (
 	"log"
+	"strconv"
 	common "adventofcode2021/common"
 )
 
 func main() {
-	input := common.GetInputDataFromFile("../common/data.txt")
+	input := common.GetInputDataFromFile("../common/day1_data.txt")
+
+	// day1 data is all ints
+	data := []int{}
+	for _, i := range input {
+		num, _ := strconv.Atoi(i)
+		data = append(data, num)
+	}
+
 	log.Printf("Processing %d lines of input\n", len(input))
 
 	// puzzle1
-	log.Printf("%v measurements are larger than the previous measurement.\n", numIncrements(input))
+	log.Printf("%v measurements are larger than the previous measurement.\n", numIncrements(data))
 
 	// puzzle2
 	slidingWindow := 3
-	slidingSumData := slidingSum(slidingWindow, input)
+	slidingSumData := slidingSum(slidingWindow, data)
 	log.Printf("%v sums are larger than the previous sum.\n", numIncrements(slidingSumData))
 }
 
